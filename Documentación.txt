@@ -1,0 +1,125 @@
+Documentación del Sistema de Cursos de Cocina
+
+1. Resumen del sistema.
+Este documento presenta un sistema para la administración de cursos de cocina, ofreciendo a los usuarios la posibilidad de registrarse, acceder a su cuenta, inscribirse en cursos y gestionar sus datos. La plataforma se compone de un frontend desarrollado en HTML y CSS, mientras que el backend se basa en PHP, con una base de datos MySQL encargada del almacenamiento de la información.
+
+
+2. Estructura de la base de datos.
+
+
+2.1 Tablas
+2.1.1 Tabla usuarios
+Descripción: Almacena la información de los usuarios registrados.
+Columnas:
+id: INT, PRIMARY KEY, AUTO_INCREMENT
+nombre: VARCHAR(100), NOT NULL
+correo: VARCHAR(100), UNIQUE, NOT NULL
+clave: VARCHAR(255), NOT NULL (almacenada como hash)
+2.1.2 Tabla cursos
+Descripción: Almacena la información de los cursos disponibles.
+Columnas:
+id: INT, PRIMARY KEY, AUTO_INCREMENT
+titulo: VARCHAR(100), NOT NULL
+descripcion: TEXT, NOT NULL
+fecha_inicio: DATE, NOT NULL
+fecha_fin: DATE, NOT NULL
+cupo: INT, NOT NULL
+2.1.3 Tabla inscripciones
+Descripción: Almacena las inscripciones de los usuarios a los cursos.
+Columnas:
+id: INT, PRIMARY KEY, AUTO_INCREMENT
+usuario_id: INT, FOREIGN KEY (referencia a usuarios.id), NOT NULL
+curso_id: INT, FOREIGN KEY (referencia a cursos.id), NOT NULL
+fecha_inscripcion: DATETIME, NOT NULL
+
+
+3. Desarrollo del Frontend
+
+
+3.1 Páginas HTML
+3.1.1 index.html
+Descripción: Página de inicio que presenta el sistema y sus características.
+Elementos:
+Título y descripción del sistema.
+Características de los cursos.
+Testimonios de usuarios.
+Botones para iniciar sesión y registrarse.
+3.1.2 login.php
+Descripción: Página para que los usuarios inicien sesión.
+Elementos:
+Formulario de inicio de sesión (correo y contraseña).
+Enlace para registrarse si no tienen cuenta.
+3.1.3 registro.php
+Descripción: Página para que los nuevos usuarios se registren.
+Elementos:
+Formulario de registro (nombre, correo y contraseña).
+Enlace para iniciar sesión si ya tienen cuenta.
+3.1.4 cursos.php
+Descripción: Página que muestra los cursos disponibles.
+Elementos:
+Listado de cursos con detalles (título, descripción, fechas y cupo).
+Botón para inscribirse en cada curso.
+3.1.5 mis_cursos.php
+Descripción: Página que muestra los cursos en los que el usuario está inscrito.
+Elementos:
+Listado de cursos inscritos con detalles.
+3.2 Estilos CSS
+Archivos CSS:
+index.css: Estilos para la página de inicio.
+cursos.css: Estilos para la página de cursos.
+sesion.css: Estilos para las páginas de inicio de sesión y registro.
+Características:
+Diseño responsivo.
+Uso de colores y tipografía atractivos.
+Efectos de hover en botones.
+
+
+4. Implementación del Backend
+
+
+4.1 Archivos PHP
+4.1.1 conexion.php
+Descripción: Establece la conexión a la base de datos MySQL.
+Características:
+Manejo de errores en la conexión.
+4.1.2 validar_registro.php
+Descripción: Procesa el registro de nuevos usuarios.
+Características:
+Validación de datos.
+Inserción de datos en la tabla usuarios.
+Redirección a la página de inicio de sesión con mensaje de éxito.
+4.1.3 validar_login.php
+Descripción: Procesa el inicio de sesión de usuarios.
+Características:
+Validación de datos.
+Verificación de la contraseña.
+Gestión de sesiones.
+4.1.4 inscribir.php
+Descripción: Procesa la inscripción de usuarios a cursos.
+Características:
+Verificación de sesión.
+Comprobación de inscripción previa.
+Inserción de datos en la tabla inscripciones.
+4.1.5 logout.php
+Descripción: Cierra la sesión del usuario.
+Características:
+Destrucción de la sesión y redirección a la página de inicio de sesión.
+
+
+5. Funcionalidades Adicionales
+
+
+Validación de Datos: Se valida la entrada de datos en formularios.
+Gestión de Sesiones: Se utilizan sesiones para mantener el estado del usuario.
+Confirmaciones de Inscripción: Mensajes de éxito o error se muestran al usuario.
+
+
+6. Pruebas y Depuración
+
+
+Pruebas: Se recomienda realizar pruebas exhaustivas en cada funcionalidad del sistema.
+Depuración: Se deben corregir errores identificados durante las pruebas.
+
+7. Conclusiones
+
+Este sistema para la gestión de cursos de cocina ofrece una interfaz intuitiva y eficiente para los usuarios que buscan inscribirse y participar en clases. Tanto la documentación como el código están organizados de manera que simplifican el mantenimiento y permiten futuras optimizaciones.
